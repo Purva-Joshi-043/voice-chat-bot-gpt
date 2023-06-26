@@ -20,7 +20,7 @@ recognition.onresult = async (event) => {
 
   try {
     // Send the transcript to the server for processing
-    const response = await fetch("/api/process", {
+    const response = await fetch("/process", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
