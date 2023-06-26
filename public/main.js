@@ -20,7 +20,7 @@ recognition.onresult = async (event) => {
 
   try {
     // Send the transcript to the server for processing
-    const response = await fetch("/process", {
+    const response = await fetch("/api/process", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,10 +55,10 @@ recognition.onresult = async (event) => {
 startButton.addEventListener("click", () => {
   if (!isRecording) {
     isRecording = true; // Start recording
-    recognition.start(); 
+    recognition.start();
     startButton.textContent = "Stop Recording";
   } else {
-    recognition.stop()
+    recognition.stop();
     isRecording = false; // Stop recording
     startButton.textContent = "Start Recording";
     resultDiv.textContent = ""; // Clear displayed transcript
