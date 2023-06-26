@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const fs = require("fs");
+// const fs = require("fs");
 const app = express();
 const port = 3000;
 
@@ -9,11 +9,6 @@ app.use(express.static("public"));
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-const multer = require("multer");
-const speech = require("@google-cloud/speech");
-const { Translate } = require("@google-cloud/translate").v2;
-const { v4: uuidv4 } = require("uuid");
 const { Configuration, OpenAIApi } = require("openai");
 const bodyParser = require("body-parser");
 const axios = require("axios");
@@ -28,6 +23,11 @@ const openai = new OpenAIApi(configuration);
 
 // Conversation history
 let conversationHistory = [];
+
+// sendFile will go here
+app.get("/", function (req, res) {
+  res.sendFile("./public/index.html");
+});
 
 // Handle the voice input processing
 app.post("/process", async (req, res) => {
